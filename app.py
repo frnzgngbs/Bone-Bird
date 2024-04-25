@@ -1,17 +1,16 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import pickle
+from tensorflow.keras.models import load_model
 
 st.markdown(
     "<h1 style='text-align: center;'>Bird Categorical Group</h1>",
     unsafe_allow_html=True,
 )
 
-pickle_in = open("bird-classifier.pkl", "rb")
-model = pickle.load(pickle_in)
+# Load the Keras model
+model = load_model("bird-classifier.h5")
 
-# Text labels for each measurement
 # Text labels for each measurement
 st.markdown(
     "<h3 style='font-size: 18px;'>Enter Measurements (in mm):</h3>",
@@ -34,19 +33,6 @@ if predict:
     measurements_array = np.array(
         [huml, humw, ulnal, ulnaw, feml, femw, tibl, tibw, tarl, tarw]
     )
-
-    column_names = [
-        "huml",
-        "humw",
-        "ulnal",
-        "ulnaw",
-        "feml",
-        "femw",
-        "tibl",
-        "tibw",
-        "tarl",
-        "tarw",
-    ]
 
     measurements_array = measurements_array.reshape(1, -1)
 
