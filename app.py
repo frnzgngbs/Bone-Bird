@@ -36,8 +36,6 @@ if predict:
 
     measurements_array = measurements_array.reshape(1, -1)
 
-    st.write(measurements_array)
-
     measurements_array = np.expand_dims(measurements_array, axis=1)
 
     prediction = model.predict(measurements_array)
