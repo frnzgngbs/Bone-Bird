@@ -3,14 +3,20 @@ import numpy as np
 import pandas as pd
 import pickle
 
-st.title("Bird-Bone Measurement Input")
+st.markdown(
+    "<h1 style='text-align: center;'>Bird Categorical Group</h1>",
+    unsafe_allow_html=True,
+)
 
 pickle_in = open("bird-classifier.pkl", "rb")
 model = pickle.load(pickle_in)
 
 # Text labels for each measurement
 # Text labels for each measurement
-st.subheader("Enter Measurements (in mm):")
+st.markdown(
+    "<h3 style='font-size: 18px;'>Enter Measurements (in mm):</h3>",
+    unsafe_allow_html=True,
+)
 huml = st.number_input("Length of Humerus", min_value=0.0)
 humw = st.number_input("Diameter of Humerus", min_value=0.0)
 ulnal = st.number_input("Length of Ulna", min_value=0.0)
@@ -49,9 +55,6 @@ if predict:
     measurements_array = np.expand_dims(measurements_array, axis=1)
 
     prediction = model.predict(measurements_array)
-
-    st.subheader("Mao ni ang percentage sa kung unsa na type")
-    st.write(prediction)
 
     predicted_class_index = np.argmax(prediction)
 
