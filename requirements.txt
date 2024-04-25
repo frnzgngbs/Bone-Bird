@@ -1,3 +1,10 @@
-tensorflow==2.15.0
+Winson Baring
+streamlit
+opencv-python-headless 
+keras
+tensorflow
+matplotlib
 numpy
-pandas
+streamlit-camera-input-live
+opencv-python
+pyautogui
