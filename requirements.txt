@@ -1,10 +1,8 @@
-Winson Baring
 streamlit
 opencv-python-headless 
 keras
-tensorflow
+tensorflow==2.15.0
 matplotlib
 numpy
-streamlit-camera-input-live
-opencv-python
+pandas
 pyautogui
