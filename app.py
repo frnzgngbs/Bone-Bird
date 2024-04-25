@@ -16,25 +16,41 @@ st.markdown(
     "<h3 style='font-size: 18px;'>Enter Measurements (in mm):</h3>",
     unsafe_allow_html=True,
 )
-huml = st.number_input("Length of Humerus", min_value=0.0)
-humw = st.number_input("Diameter of Humerus", min_value=0.0)
-ulnal = st.number_input("Length of Ulna", min_value=0.0)
-ulnaw = st.number_input("Diameter of Ulna", min_value=0.0)
-feml = st.number_input("Length of Femur", min_value=0.0)
-femw = st.number_input("Diameter of Femur", min_value=0.0)
-tibl = st.number_input("Length of Tibiotarsus", min_value=0.0)
-tibw = st.number_input("Diameter of Tibiotarsus", min_value=0.0)
-tarl = st.number_input("Length of Tarsometatarsus", min_value=0.0)
-tarw = st.number_input("Diameter of Tarsometatarsus", min_value=0.0)
+huml = st.number_input("Length of Humerus", min_value=0.0, key="huml")
+humw = st.number_input("Diameter of Humerus", min_value=0.0, key="humw")
+ulnal = st.number_input("Length of Ulna", min_value=0.0, key="ulnal")
+ulnaw = st.number_input("Diameter of Ulna", min_value=0.0, key="ulnaw")
+feml = st.number_input("Length of Femur", min_value=0.0, key="feml")
+femw = st.number_input("Diameter of Femur", min_value=0.0, key="femw")
+tibl = st.number_input("Length of Tibiotarsus", min_value=0.0, key="tibl")
+tibw = st.number_input("Diameter of Tibiotarsus", min_value=0.0, key="tibw")
+tarl = st.number_input("Length of Tarsometatarsus", min_value=0.0, key="tarl")
+tarw = st.number_input("Diameter of Tarsometatarsus", min_value=0.0, key="tarw")
 predict = st.button("Predict")
 
-if predict:
+# Check if all fields are filled before predicting
+if predict and not (
+    huml
+    and humw
+    and ulnal
+    and ulnaw
+    and feml
+    and femw
+    and tibl
+    and tibw
+    and tarl
+    and tarw
+):
+    st.error("Please fill in all measurements.")
+elif predict:
     # Prepare input data
     measurements_array = np.array(
         [huml, humw, ulnal, ulnaw, feml, femw, tibl, tibw, tarl, tarw]
     )
 
     measurements_array = measurements_array.reshape(1, -1)
+
+    st.write(measurements_array)
 
     measurements_array = np.expand_dims(measurements_array, axis=1)
 
